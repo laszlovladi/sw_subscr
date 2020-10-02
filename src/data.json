@@ -1,0 +1,41 @@
+{
+  "types": {
+    "personal": {
+      "name": "Personal",
+      "price": 10,
+      "currency": "EUR"
+    }, 
+    "pro": {
+      "name": "Pro",
+      "price": 20,
+      "currency": "EUR"
+    }, 
+    "enterprise": {
+      "name": "Enterprise",
+      "price": 30,
+      "currency": "EUR"
+    }
+  },
+  "length": {
+    "1": {
+      "name": "1 month",
+      "discount": 0,
+      "units": "%"
+    },
+    "3": {
+      "name": "3 months",
+      "discount": 5,
+      "units": "%"
+    },
+    "6": {
+      "name": "6 months",
+      "discount": 10,
+      "units": "%"
+    },
+    "12": {
+      "name": "12 months",
+      "discount": 15,
+      "units": "%"
+    }
+  }
+}

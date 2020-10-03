@@ -1,10 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
 import ProgressBar from './ProgressBar.jsx'
-import { Button } from 'reactstrap';
+import { Button, Spinner } from 'reactstrap';
 
 function Type(props){
-  const {types, chosenType} = props;
+  const { isLoading, types, chosenType } = props;
   return (
     <div className="type">
       <div className="m-2">
@@ -14,16 +14,23 @@ function Type(props){
         />
       </div>
       <div className="step-content container">
-        <h3 className="step-header">Choose the type of subscription</h3>
+        <h3 className="step-header">Choose a type of subscription</h3>
         <div className="step-items row p-2">
-          {Object.keys(types).map((item, i) => (
-            <div className="type-item col-xs-12 col-sm-4 mb-1" key={i}>
-              <div className={`type-item-card card p-3 ${chosenType === item ? 'border-danger' : ''}`} onClick={(e) => props.toggleChosenType(e, item)}>
-                {types[item].name}<br/>
-                {new Intl.NumberFormat('cz-CZ', { style: 'currency', currency: types[item].currency }).format(types[item].price)}
+          {!isLoading && types ?
+            Object.keys(types).map((item, i) => (
+              <div className="type-item col-xs-12 col-sm-4 mb-1" key={i}>
+                <div className={`type-item-card card p-3 ${chosenType === item ? 'border-danger' : ''}`} 
+                  onClick={(e) => props.toggleChosenType(e, item)}>
+                    {types[item].name}<br/>
+                    {new Intl.NumberFormat('cz-CZ', { style: 'currency', currency: types[item].currency }).format(types[item].price)}
+                </div>
               </div>
-            </div>
-          ))}
+            )) : (
+              <div className="spinner-container d-flex justify-content-center align-items-center">
+                <Spinner color="primary" />
+              </div>
+            )
+          }
         </div>
       </div>
       <div className="m-2 d-flex justify-content-between">

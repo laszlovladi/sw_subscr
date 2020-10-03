@@ -2,12 +2,20 @@
   text-align: center;
 }
 
-.navBar{
+.navBar {
   .navbar-link{
     color: white;
   }
 }
 
-.home{
+.home {
   min-height: calc(100vh - 56px);
+}
+
+.type-item-card {
+  cursor: pointer;
+}
+
+.spinner-container {
+  width: 100%;
 }

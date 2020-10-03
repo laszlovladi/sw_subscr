@@ -1,10 +1,10 @@
 import React from 'react';
 import { Link, Redirect } from 'react-router-dom'
 import ProgressBar from './ProgressBar.jsx'
-import { Button } from 'reactstrap';
+import { Button, Spinner } from 'reactstrap';
 
 function Length(props){
-  const {types, length, chosenType, chosenLength} = props;
+  const {isLoading, types, length, chosenType, chosenLength} = props;
   return (
     <>
     {chosenType !== null ?
@@ -16,17 +16,25 @@ function Length(props){
           />
         </div>
         <div className="step-content container">
-          <h3 className="step-header">Choose the type of subscription</h3>
+          <h3 className="step-header">Choose a length of subscription</h3>
           <div className="step-items row p-2">
-            {Object.keys(length).map((item, i) => (
-              <div className="type-item col-xs-12 col-sm-6 col-md-6 col-lg-3 mb-1" key={i}>
-                <div className={`type-item-card card p-3 ${chosenLength === item ? 'border-danger' : ''}`} onClick={(e) => props.toggleChosenLength(e, item)}>
-                  {length[item].name}<br/>
-                  Discount {length[item].discount}%<br/>
-                  You pay {new Intl.NumberFormat('cz-CZ', { style: 'currency', currency: types[chosenType].currency }).format(types[chosenType].price * (1 - length[item].discount/100))}
+            {!isLoading && length ?
+              Object.keys(length).map((item, i) => (
+                <div className="type-item col-xs-12 col-sm-6 col-md-6 col-lg-3 mb-1" key={i}>
+                  <div className={`type-item-card card p-3 ${chosenLength === item ? 'border-danger' : ''}`} 
+                    onClick={(e) => props.toggleChosenLength(e, item)}>
+                      {length[item].name}<br/>
+                      Discount {length[item].discount}%<br/>
+                      You pay {new Intl.NumberFormat('cz-CZ', { style: 'currency', currency: types[chosenType].currency })
+                      .format(types[chosenType].price * (1 - length[item].discount/100))}
+                  </div>
                 </div>
-              </div>
-            ))}
+              )) : (
+                <div className="spinner-container d-flex justify-content-center align-items-center">
+                  <Spinner color="primary" />
+                </div>
+              )
+            }
           </div>
         </div>
         <div className="m-2 d-flex justify-content-between">

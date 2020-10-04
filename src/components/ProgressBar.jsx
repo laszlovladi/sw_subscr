@@ -6,7 +6,7 @@ function ProgressBar(props){
 
   return (
     <div className="progressBar ">
-      <div className="text-center">{progressDescription}</div>
+      <div className="text-center"><b>{progressDescription}</b></div>
       <Progress value={progress} />
   
     </div>

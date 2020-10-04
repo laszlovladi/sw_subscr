@@ -1,6 +1,6 @@
 import React from 'react';
-import { Link, Redirect } from 'react-router-dom'
-import ProgressBar from './ProgressBar.jsx'
+import { Link, Redirect } from 'react-router-dom';
+import ProgressBar from './ProgressBar.jsx';
 import { Col, Row, Button, Form, FormGroup, Label, Input } from 'reactstrap';
 
 function Info(props){
@@ -10,20 +10,20 @@ function Info(props){
     <>
       {chosenType !== null && chosenLength !== null?
         <div className="info">
-          <div className="m-2">
+          <div className="m-4">
             <ProgressBar {...props}
               progress={75}
               progressDescription={"step 3 of 4"}
             />
           </div>
-          <div className="step-content">
-            <h3 className="step-header">Enter your personal info</h3>
-            <div className="step-content">
+          <div className="step-content container">
+            <h3 className="step-header text-default font-weight-bolder">Enter your personal info</h3>
+            <div className="step-content p-2">
               <Form>
                 <Row form>
                   <Col md={6}>
                     <FormGroup>
-                      <Label for="name">Name</Label>
+                      <Label for="name"><b>Name</b></Label>
                       <Input 
                         type="text" 
                         name="name" 
@@ -31,15 +31,13 @@ function Info(props){
                         placeholder="Name Surname" 
                         value={info.name.value} 
                         onChange={(e) => props.updateInfo('name', e)} 
-                        // {info.name.isValid === null ? '' : `valid=${info.name.isValid}`}
                         valid={!!info.name.isValid} 
-                        // invalid={!info.name.isValid}
                       />
                     </FormGroup>
                   </Col>
                   <Col md={6}>
                     <FormGroup>
-                      <Label for="email">Email</Label>
+                      <Label for="email"><b>Email</b></Label>
                       <Input 
                         type="email" 
                         name="email" 
@@ -48,13 +46,12 @@ function Info(props){
                         value={info.email.value} 
                         onChange={(e) => props.updateInfo('email', e)} 
                         valid={!!info.email.isValid} 
-                        // invalid={!info.email.isValid} 
                       />
                     </FormGroup>
                   </Col>
                 </Row>
                 <FormGroup>
-                  <Label for="address">Address</Label>
+                  <Label for="address"><b>Address</b></Label>
                   <Input 
                     type="text" 
                     name="address" 
@@ -68,7 +65,7 @@ function Info(props){
                 <Row form>
                   <Col md={6}>
                     <FormGroup>
-                      <Label for="exampleCity">City</Label>
+                      <Label for="exampleCity"><b>City</b></Label>
                       <Input 
                         type="text" 
                         name="city" 
@@ -82,7 +79,7 @@ function Info(props){
                   </Col>
                   <Col md={4}>
                     <FormGroup>
-                      <Label for="country">Country</Label>
+                      <Label for="country"><b>Country</b></Label>
                       <Input 
                         type="text" 
                         name="country" 
@@ -96,7 +93,7 @@ function Info(props){
                   </Col>
                   <Col md={2}>
                     <FormGroup>
-                      <Label for="postcode">Postcode</Label>
+                      <Label for="postcode"><b>Postcode</b></Label>
                       <Input 
                         type="text" 
                         name="postcode" 

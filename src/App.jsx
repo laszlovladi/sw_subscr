@@ -25,7 +25,6 @@ function App() {
   const [formIsValid, setFormIsValid] = useState(false);
 
   const getData = async () => {
-    console.log('fetching data');
     try {
       const url = 'https://my-json-server.typicode.com/laszlovladi/dummy_api/db';
       const response = await fetch(url);
@@ -39,26 +38,24 @@ function App() {
 
   useEffect(()=>{
     setIsLoading(true);
-    if(!types || !length) getData();
+    getData();
     setIsLoading(false);
   }, [])
 
-  const isFormValid = () => {
-    const arr = [];
-    Object.keys(info).map(element => arr.push(!!info[element].isValid));
-    for(let i=0; i<arr.length; i+=1){
-      if(!arr[i]){
-        return false;
-      }
-    }
-    return true;
-  }
-
   useEffect(()=>{
-    setFormIsValid(isFormValid());
+    setFormIsValid(() => {
+      const arr = [];
+      Object.keys(info).map(element => arr.push(!!info[element].isValid));
+      for(let i=0; i<arr.length; i+=1){
+        if(!arr[i]){
+          return false;
+        }
+      }
+      return true;
+    });
   }, [info]);
 
-  const toggleChosenType = (e, item) => {
+  const toggleChosenType = (item) => {
     if(chosenType === item){
       setChosenType(null);
     }else{
@@ -66,7 +63,7 @@ function App() {
     }
   }
 
-  const toggleChosenLength = (e, item) => {
+  const toggleChosenLength = (item) => {
     if(chosenLength === item){
       setChosenLength(null);
     }else{
@@ -76,6 +73,7 @@ function App() {
 
   const updateInfo = (fieldName, e) => {
     const newValue = e.target.value;
+    // eslint-disable-next-line
     const re = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
 
     setInfo(prevState => {

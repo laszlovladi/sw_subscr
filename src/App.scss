@@ -1,19 +1,40 @@
 .App {
   text-align: center;
+  font-family: 'Nunito', sans-serif;
+  font-size: 1rem;
+  line-height: 1.6;
 }
 
-.navBar {
-  .navbar-link{
-    color: white;
-  }
+.navbar-link{
+  color: white;
 }
 
 .home {
-  min-height: calc(100vh - 56px);
+  min-height: calc(100vh - 58px);
 }
 
 .type-item-card {
   cursor: pointer;
+  -webkit-box-shadow: 5px 5px 5px 0px grey;
+  -moz-box-shadow: 5px 5px 5px 0px grey;
+  box-shadow: 5px 5px 5px 0px grey;
+  transition: transform .2s;
+  position: relative;
+
+  &:hover{
+    -webkit-box-shadow: 10px 10px 5px 0px grey;
+    -moz-box-shadow: 10px 10px 5px 0px grey;
+    box-shadow: 10px 10px 5px 0px grey;
+    transform: scale(1.05);
+  }
+}
+
+.tick{
+  position: absolute;
+  bottom: 0px;
+  right: 10px;
+  font-size: 1.5em;
+  color: green;
 }
 
 .spinner-container {
